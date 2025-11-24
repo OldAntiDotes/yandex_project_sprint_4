@@ -1,3 +1,8 @@
+package theatre.shows;
+
+import theatre.people.Person;
+import theatre.people.Director;
+
 public class Opera extends MusicalShow {
     private int choirSize;
 

@@ -1,9 +1,14 @@
+package theatre.shows;
+
+import theatre.people.Actor;
+import theatre.people.Director;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Show {
     protected String title;
-    protected int duration;          // в минутах
+    protected int duration;
     protected Director director;
     protected List<Actor> listOfActors;
 
@@ -14,25 +19,22 @@ public class Show {
         this.listOfActors = new ArrayList<>();
     }
 
-    // распечатать режиссёра
     public void printDirector() {
         System.out.println("Режиссёр: " + director.getName() + " " + director.getSurname());
     }
 
-    // распечатать список актёров
     public void printActors() {
+        System.out.println("Список актёров для спектакля \"" + title + "\":");
         if (listOfActors.isEmpty()) {
-            System.out.println("В этом спектакле пока нет актёров.");
+            System.out.println("  (в этом спектакле пока нет актёров)");
             return;
         }
-        System.out.println("Список актёров для спектакля \"" + title + "\":");
         for (Actor actor : listOfActors) {
-            System.out.println("- " + actor.getName() + " " + actor.getSurname() +
-                    " (" + actor.getHeight() + ")");
+            System.out.println("- " + actor.getName() + " " + actor.getSurname()
+                    + " (" + actor.getHeight() + ")");
         }
     }
 
-    // добавить актёра с проверкой на дубликаты
     public void addActor(Actor actor) {
         if (listOfActors.contains(actor)) {
             System.out.println("Актёр " + actor + " уже участвует в спектакле \"" + title + "\". Не добавляем.");
@@ -41,19 +43,18 @@ public class Show {
         }
     }
 
-    // заменить актёра по фамилии
     public void replaceActor(String surnameToReplace, Actor newActor) {
         for (int i = 0; i < listOfActors.size(); i++) {
             Actor current = listOfActors.get(i);
             if (current.getSurname().equalsIgnoreCase(surnameToReplace)) {
                 listOfActors.set(i, newActor);
-                System.out.println("В спектакле \"" + title + "\" актёр " +
-                        current + " заменён на " + newActor + ".");
+                System.out.println("В спектакле \"" + title + "\" актёр "
+                        + current + " заменён на " + newActor + ".");
                 return;
             }
         }
-        System.out.println("Актёр с фамилией " + surnameToReplace +
-                " не найден в спектакле \"" + title + "\".");
+        System.out.println("Актёр с фамилией " + surnameToReplace
+                + " не найден в спектакле \"" + title + "\".");
     }
 
     public String getTitle() {

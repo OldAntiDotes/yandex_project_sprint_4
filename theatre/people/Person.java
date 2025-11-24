@@ -1,7 +1,9 @@
+package theatre.people;
+
 public class Person {
     protected String name;
     protected String surname;
-    protected String gender; // для простоты — строка
+    protected String gender;
 
     public Person(String name, String surname, String gender) {
         this.name = name;

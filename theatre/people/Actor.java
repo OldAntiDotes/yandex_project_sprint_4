@@ -1,7 +1,9 @@
+package theatre.people;
+
 import java.util.Objects;
 
 public class Actor extends Person {
-    private double height; // рост
+    private double height;
 
     public Actor(String name, String surname, String gender, double height) {
         super(name, surname, gender);
@@ -18,13 +20,13 @@ public class Actor extends Person {
         if (!(o instanceof Actor)) return false;
         Actor actor = (Actor) o;
         return Double.compare(actor.height, height) == 0 &&
-                java.util.Objects.equals(name, actor.name) &&
-                java.util.Objects.equals(surname, actor.surname);
+                Objects.equals(name, actor.name) &&
+                Objects.equals(surname, actor.surname);
     }
 
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(name, surname, height);
+        return Objects.hash(name, surname, height);
     }
 
     @Override
