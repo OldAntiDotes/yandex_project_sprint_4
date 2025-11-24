@@ -1,35 +1,34 @@
 import java.util.Objects;
 
 public class Actor extends Person {
-    private int height; // рост в сантиметрах
+    private double height; // рост
 
-    public Actor(String name, String surname, Gender gender, int height) {
+    public Actor(String name, String surname, String gender, double height) {
         super(name, surname, gender);
         this.height = height;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    // Актёры считаются равными, если совпадают имя, фамилия и рост
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Actor)) return false;
         Actor actor = (Actor) o;
-        return height == actor.height &&
-                Objects.equals(getName(), actor.getName()) &&
-                Objects.equals(getSurname(), actor.getSurname());
+        return Double.compare(actor.height, height) == 0 &&
+                java.util.Objects.equals(name, actor.name) &&
+                java.util.Objects.equals(surname, actor.surname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getSurname(), height);
+        return java.util.Objects.hash(name, surname, height);
     }
 
     @Override
     public String toString() {
-        return getName() + " " + getSurname() + " (" + height + ")";
+        return name + " " + surname + " (" + height + ")";
     }
 }

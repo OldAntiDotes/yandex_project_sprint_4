@@ -1,36 +1,36 @@
 public class Theatre {
     public static void main(String[] args) {
-        // 1. Создаём актёров
-        Actor actor1 = new Actor("Иван", "Иванов", Gender.MALE, 180);
-        Actor actor2 = new Actor("Пётр", "Петров", Gender.MALE, 175);
-        Actor actor3 = new Actor("Анна", "Сидорова", Gender.FEMALE, 165);
+        // 1. Три актёра
+        Actor actor1 = new Actor("Иван", "Иванов", "male", 180);
+        Actor actor2 = new Actor("Пётр", "Петров", "male", 175);
+        Actor actor3 = new Actor("Анна", "Сидорова", "female", 168);
 
-        // 2. Создаём режиссёров
-        Director director1 = new Director("Михаил", "Сергеев", Gender.MALE, 10);
-        Director director2 = new Director("Ольга", "Николаева", Gender.FEMALE, 5);
+        // 2. Два режиссёра
+        Director director1 = new Director("Сергей", "Сергеев", "male", 10);
+        Director director2 = new Director("Мария", "Кузнецова", "female", 7);
 
-        // 3. Автор музыки и хореограф (как строки)
-        String musicAuthor = "П. И. Чайковский";
-        String choreographer = "Мариус Петипа";
+        // 3. Автор музыки и хореограф (обычные Person)
+        Person composer = new Person("Людвиг", "Бетховен", "male");
+        Person choreographer = new Person("Майя", "Плисецкая", "female");
 
-        // 4. Создаём три спектакля: обычный, оперный и балет
+        // 4. Три спектакля: обычный, опера и балет
         Show drama = new Show("Гроза", 120, director1);
 
         Opera opera = new Opera(
-                "Евгений Онегин",
-                160,
+                "Волшебная флейта",
+                150,
                 director2,
-                musicAuthor,
-                "Либретто оперы «Евгений Онегин»...",
-                40
+                composer,
+                "Принц Тамино, ночь, змеи и немного магии...",
+                30
         );
 
         Ballet ballet = new Ballet(
                 "Лебединое озеро",
                 140,
-                director2,
-                musicAuthor,
-                "Либретто балета «Лебединое озеро»...",
+                director1,
+                composer,
+                "История принца Зигфрида и заколдованной принцессы Одетты.",
                 choreographer
         );
 
@@ -44,37 +44,30 @@ public class Theatre {
         ballet.addActor(actor1);
         ballet.addActor(actor3);
 
-        // 6. Для каждого спектакля выводим список актёров
-        System.out.println("Актёры драматического спектакля:");
+        // 6. Для каждого спектакля выведем список актёров
+        System.out.println("=== Список актёров обычного спектакля ===");
         drama.printActors();
-        System.out.println();
 
-        System.out.println("Актёры оперы:");
+        System.out.println("\n=== Список актёров оперного спектакля ===");
         opera.printActors();
-        System.out.println();
 
-        System.out.println("Актёры балета:");
+        System.out.println("\n=== Список актёров балетного спектакля ===");
         ballet.printActors();
-        System.out.println();
 
-        // 7. Заменяем актёра в одном из спектаклей и снова выводим список
-        System.out.println("Заменяем актёра во «Грозе» (Петров -> Сидорова):");
-        drama.replaceActor(actor3, "Петров");
-        System.out.println("Актёры драматического спектакля после замены:");
-        drama.printActors();
-        System.out.println();
+        // 7. Заменяем актёра в одном из спектаклей
+        System.out.println("\n=== Заменяем актёра в опере ===");
+        opera.replaceActor("Петров", actor1); // заменим Петрова на Иванова
+        opera.printActors();
 
         // 8. Пытаемся заменить несуществующего актёра в другом спектакле
-        System.out.println("Пробуем заменить несуществующего актёра в опере:");
-        opera.replaceActor(actor1, "Несуществующий");
-        System.out.println();
+        System.out.println("\n=== Пытаемся заменить несуществующего актёра в балете ===");
+        ballet.replaceActor("Несуществующий", actor2);
 
-        // 9. Выводим либретто для оперы и балета
-        System.out.println("Либретто оперы:");
+        // 9. Для оперы и балета выводим текст либретто
+        System.out.println("\n=== Либретто оперы ===");
         opera.printLibretto();
-        System.out.println();
 
-        System.out.println("Либретто балета:");
+        System.out.println("\n=== Либретто балета ===");
         ballet.printLibretto();
     }
 }

@@ -1,9 +1,9 @@
 public class Person {
-    private String name;
-    private String surname;
-    private Gender gender;
+    protected String name;
+    protected String surname;
+    protected String gender; // для простоты — строка
 
-    public Person(String name, String surname, Gender gender) {
+    public Person(String name, String surname, String gender) {
         this.name = name;
         this.surname = surname;
         this.gender = gender;
@@ -17,7 +17,12 @@ public class Person {
         return surname;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
+    }
+
+    @Override
+    public String toString() {
+        return name + " " + surname;
     }
 }
